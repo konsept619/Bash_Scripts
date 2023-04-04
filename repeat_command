@@ -1,0 +1,20 @@
+#!/bin/bash 
+
+#this sctipt will be executing hardcoded command for determined number of second 
+START=1
+N=$1 #end of iteration
+rg='^[0-9]+$'
+[ -z "$N" ] && echo "You need to specify how many iterations(seconds) your command should be executed!" && exit 
+if ! [[ $N =~ $rg ]]; then
+        echo "Argument must be a number!"
+        exit
+fi
+while [[ $START -le $N ]]
+do
+        echo "$START"
+        ip a
+        ((START = START + 1 ))
+        [ "$START" -gt "$N" ] && echo "OK" && exit
+        sleep 1
+done
+
